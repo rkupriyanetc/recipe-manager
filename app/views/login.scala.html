@@ -1,0 +1,12 @@
+
+@main(Messages("page.login.title")) {
+
+  <form class="form-signin" role="form">
+  	<h2 class="form-signin-heading">@Messages("lable.signin.title")</h2>
+  	<input type="email" class="form-control" placeholder='@Messages("placeholder.email")' required autofocus>
+  	<input type="password" class="form-control" placeholder='@Messages("placeholder.password")' required>
+  	<label class="checkbox"><input type="checkbox" value="remember-me">@Messages("lable.remember.title")</label>
+  	<button class="btn btn-lg btn-primary btn-block" type="submit">@Messages("button.login.title")</button>
+  </form>
+
+}

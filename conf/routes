@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           rvk.recipe.controllers.Application.index()
+GET     /rules                      rvk.recipe.controllers.Application.rules
+GET     /about                      rvk.recipe.controllers.Application.about
+
+GET     /manager              			rvk.recipe.controllers.ToolsManager.manager
+GET     /manager/user/admin    			rvk.recipe.controllers.ToolsManager.adminUsers
+POST    /manager/user/new     			rvk.recipe.controllers.ToolsManager.newUser
+
+GET     /signup                     rvk.recipe.controllers.Application.signup
+GET     /login                      rvk.recipe.controllers.Application.login
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

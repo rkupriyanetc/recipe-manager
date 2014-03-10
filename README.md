@@ -1,4 +1,0 @@
-recipe-manager
-==============
-
-Recipe Manager

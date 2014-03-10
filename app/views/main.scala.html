@@ -1,0 +1,36 @@
+
+@(title: String)(content: Html)
+
+@import rvk.recipe.manager.Info
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title - Recipe Manager</title>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/bootstrap.min.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/bootstrap-theme.min.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/non-responsive.css")'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/signin.css")'>
+        <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
+        <script src='@routes.Assets.at("js/jquery-1.9.0.min.js")' type="text/javascript"></script>
+        <script src='@routes.Assets.at("js/bootstrap.min.js")' type="text/javascript"></script>
+    </head>
+    <body>
+    	@_mySession()
+    	
+    	<div class="container">
+        @content
+      	
+      	<footer>
+        	<hr/>
+        	
+        	<p class="text-center">
+          	&copy; Copyright 2014 RVK | @Info.NAME v. @Info.VERSION @Info.BUILD_DATE
+          </p>
+        </footer>
+      
+      </div> <!-- /container -->
+      
+    </body>
+</html>

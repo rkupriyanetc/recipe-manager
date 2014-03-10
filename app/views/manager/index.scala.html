@@ -1,0 +1,8 @@
+
+@import helper._
+@import views.html.manager._
+@import rvk.recipe.controllers._
+
+@main(Messages("page.manager.title")) {
+	<a href="@routes.ToolsManager.adminUsers()">@Messages("page.manager.user.title")</a>
+}

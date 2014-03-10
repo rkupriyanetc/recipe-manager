@@ -1,0 +1,14 @@
+This is your new Play application
+=====================================
+
+This file will be packaged with your application, when using `play dist`.
+
+Result ok = ok("Hello world!");
+Result notFound = notFound();
+Result pageNotFound = notFound("<h1>Page not found</h1>").as("text/html");
+Result badRequest = badRequest(views.html.form.render(formWithErrors));
+Result oops = internalServerError("Oops");
+Result anyStatus = status(488, "Strange response type");
+
+Result redirect("/user/home");
+Result temporaryRedirect("/user/home");
