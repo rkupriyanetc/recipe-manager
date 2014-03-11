@@ -8,8 +8,8 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import rvk.recipe.model.User;
-import views.html.manager.adminUsers;
 import views.html.manager.index;
+import views.html.manager.adminUsers;
 
 public class ToolsManager extends Controller {
 	
@@ -18,17 +18,17 @@ public class ToolsManager extends Controller {
 	}
 	
 	public static Result adminUsers() {
-		final List< User > list = User.List.ALL;
+		final List< User > list = User.ALL;
 		return ok( adminUsers.render( list, form( User.class ), "" ) );
 	}
 	
 	public static Result newUser() {
 		final Form< User > userForm = form( User.class ).bindFromRequest();
 		if ( userForm.hasErrors() ) {
-			return badRequest( adminUsers.render( User.List.ALL, userForm, "Bad input for new User" ) );
+			return badRequest( adminUsers.render( User.ALL, userForm, "Bad input for new User" ) );
 		}
 		final User user = userForm.get();
-		User.List.add( user );
+		User.ALL.add( user );
 		user.save();
 		return redirect( routes.ToolsManager.adminUsers() );
 	}

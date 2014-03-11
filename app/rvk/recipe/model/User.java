@@ -1,5 +1,7 @@
 package rvk.recipe.model;
 
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,41 +13,43 @@ import rvk.recipe.manager.StringEncrypter;
 /**
  * @author RVK
  */
-@Entity( name = "User" )
+@Entity
 @Table( name = "users" )
 public class User extends Identifier {
 	
-	private static final long	serialVersionUID	= 1L;
+	private static final long		serialVersionUID	= 1L;
 	
 	@Required
 	@Basic
 	@Column( nullable = false, length = 25 )
-	public String							nickname;
+	public String								nickname;
 	
 	@Basic
 	@Column( nullable = false, length = 25 )
-	public String							password;
+	public String								password;
 	
 	@Required
 	@Basic
 	@Column( nullable = false, length = 40 )
-	public String							email;
+	public String								email;
 	
 	@Basic
 	@Column( nullable = false, length = 13 )
-	public UserRole						role;
+	public UserRole							role;
 	
 	@Basic
 	@Column( length = 60 )
-	public String							fullname;
+	public String								fullname;
 	
 	@Basic
 	@Column( length = 15 )
-	public String							telephoneNumber;
+	public String								telephoneNumber;
 	
 	@Basic
 	@Column( length = 255 )
-	public String							address;
+	public String								address;
+	
+	public static List< User >	ALL								= new Finder< Long, User >( Long.class, User.class ).all();
 	
 	public User() {}
 	
@@ -91,30 +95,5 @@ public class User extends Identifier {
 		sb.append( ", Nickname : " );
 		sb.append( nickname );
 		return sb.toString();
-	}
-	
-	public static class List {
-		
-		private static Finder< Long, User >		find	= new Finder< Long, User >( Long.class, User.class );
-		
-		public static java.util.List< User >	ALL		= find.all();
-		
-		public static boolean add( final User u ) {
-			if ( !ALL.contains( u ) )
-				return ALL.add( u );
-			else
-				return false;
-		}
-		
-		public static User get( final int index ) {
-			if ( index >= 0 && index < ALL.size() )
-				return ALL.get( index );
-			else
-				return null;
-		}
-		
-		public static int size() {
-			return ALL.size();
-		}
 	}
 }
