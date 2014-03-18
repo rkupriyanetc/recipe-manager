@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
+import play.db.ebean.Model;
+
 /**
  * @author RVK
  */
@@ -26,52 +28,52 @@ import javax.persistence.Table;
 @Table( name = "recipes" )
 public class Recipe extends Identifier {
 	
-	private static final long							serialVersionUID	= 2L;
+	private static final long										serialVersionUID	= 2L;
 	
 	@Basic
 	@Column( length = 150, nullable = false )
-	private String												title;
+	private String															title;
 	
 	@Lob
 	@Basic( fetch = FetchType.LAZY, optional = true )
-	public String													description;
+	public String																description;
 	
 	@Basic
 	@Column( name = "date_creation", nullable = false )
-	public Date														dateCreation;
+	public Date																	dateCreation;
 	
 	@Basic
 	@Column( length = 255 )
-	public String													link;
+	public String																link;
 	
 	@ManyToOne
-	public User														user;
+	public User																	user;
 	
 	@Basic
 	@Column( name = "image_name", length = 36 )
-	public String													imageName;
+	public String																imageName;
 	
 	@OrderColumn( name = "id" )
 	@CollectionTable( name = "recipe_images", joinColumns = { @JoinColumn( name = "recipe_id" ) } )
 	@ElementCollection( fetch = FetchType.LAZY )
 	@Column( name = "image_name", length = 36 )
-	public List< String >									imagesNames				= new ArrayList< String >();
+	public List< String >												imagesNames				= new ArrayList< String >();
 	
 	@CollectionTable( name = "recipe_tags", joinColumns = { @JoinColumn( name = "recipe_id" ) } )
 	@ElementCollection( fetch = FetchType.LAZY )
 	@Column( name = "tag", length = 25 )
-	private Set< String >									tags							= new HashSet< String >();
+	private Set< String >												tags							= new HashSet< String >();
 	
 	@Basic
-	public boolean												isPrivate;
+	public boolean															isPrivate;
 	
 	@Basic
-	public int														visiting;
+	public int																	visiting;
 	
 	@Basic
-	public byte														rating;
+	public byte																	rating;
 	
-	public static Finder< Long, Recipe >	find							= new Finder< Long, Recipe >( Long.class, Recipe.class );
+	public static Model.Finder< Long, Recipe >	find							= new Model.Finder< Long, Recipe >( Long.class, Recipe.class );
 	
 	public Recipe( final String title, final String description, final User user ) {
 		this.title = title;
