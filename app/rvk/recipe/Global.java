@@ -7,6 +7,7 @@ import play.Application;
 import play.GlobalSettings;
 import play.mvc.Call;
 import rvk.recipe.model.UserRole;
+import rvk.recipe.controllers.routes;
 
 import com.feth.play.module.pa.PlayAuthenticate;
 import com.feth.play.module.pa.PlayAuthenticate.Resolver;
