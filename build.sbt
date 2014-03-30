@@ -21,8 +21,8 @@ libraryDependencies ++= Seq(
   "com.feth"			%% "play-authenticate"  	% "0.5.2-SNAPSHOT",
 	"mysql"					%  "mysql-connector-java" % "5.1.29",
   javaCore,
-	javaEbean,
-  cache
+  javaJdbc,
+	javaEbean
 )     
 
 playJavaSettings

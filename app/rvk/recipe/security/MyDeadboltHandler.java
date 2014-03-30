@@ -3,7 +3,7 @@ package rvk.recipe.security;
 import play.libs.F;
 import play.mvc.Http;
 import play.mvc.SimpleResult;
-import rvk.recipe.model.User;
+import rvk.recipe.models.User;
 import be.objectify.deadbolt.core.models.Subject;
 import be.objectify.deadbolt.java.AbstractDeadboltHandler;
 import be.objectify.deadbolt.java.DynamicResourceHandler;

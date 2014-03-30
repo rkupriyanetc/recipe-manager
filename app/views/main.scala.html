@@ -1,36 +1,121 @@
+@(title: String, nav: String = "")(content: Html)
 
-@(title: String)(content: Html)
-
-@import rvk.recipe.manager.Info
+@import be.objectify.deadbolt.java.views.html._
+@import be.objectify.deadbolt.core.utils.TemplateUtils._
+@import play.api.Play
+@import rvk.recipe.utils.Info
 
 <!DOCTYPE html>
+<html lang="@lang().code()">
+  <head>
+    <title>@title - Recipe Manager</title>
+    
+    <!-- The meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="recipe-manager - Portal for Recipe Manager! It is based on a Play Framework 2.0">
+    <meta name="author" content="The RVK Team">
+    <meta name="google-site-verification" content='@Play.current.configuration.getString("google.application.verificationCode")' />
+    
+    <!-- The scripts -->
+	<script src='@routes.Assets.at("js/jquery-1.10.2.min.js")' type="text/javascript"></script>
+	<script src='@routes.Assets.at("js/bootstrap.min.js")' type="text/javascript"></script>
+	<script src="@rvk.recipe.controllers.routes.Application.jsRoutes" defer="defer"></script>
+	
+    <!-- This is a script for popup window
+    <script src="js/addthis_widget.js#pubid=ra-4dbfb1915f17d240" type="text/javascript"></script>
+     -->
+    <!-- The styles -->
+    <link href='@routes.Assets.at("stylesheets/main.min.css")' rel="stylesheet">
+    <link href='@routes.Assets.at("css/bootstrap.min.css")' rel="stylesheet">
+    <link href='@routes.Assets.at("css/style.css")' rel="stylesheet" media="screen">
+        
+    <!-- The main icon -->
+    <link href='@routes.Assets.at("images/favicon.png")' rel="shortcut icon" type="img/png">
+    
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-<html>
-    <head>
-        <title>@title - Recipe Manager</title>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/bootstrap.min.css")'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/bootstrap-theme.min.css")'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/non-responsive.css")'>
-        <link rel="stylesheet" media="screen" href='@routes.Assets.at("css/signin.css")'>
-        <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
-        <script src='@routes.Assets.at("js/jquery-1.9.0.min.js")' type="text/javascript"></script>
-        <script src='@routes.Assets.at("js/bootstrap.min.js")' type="text/javascript"></script>
-    </head>
-    <body>
-    	@_mySession()
-    	
-    	<div class="container">
-        @content
-      	
-      	<footer>
-        	<hr/>
-        	
-        	<p class="text-center">
-          	&copy; Copyright 2014 RVK | @Info.NAME v. @Info.VERSION @Info.BUILD_DATE
-          </p>
-        </footer>
+  </head>
+
+  <body>
+  	
+  	<!-- main container -->
+    <div class="container">
+
+      <!-- second menu bar -->
+      <nav class="navbar navbar-default navbar-static">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#b-menu-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@rvk.recipe.controllers.routes.Application.index()">@Messages("page.home.name")</a>
+        </div>
+
+        <!-- submenu elements for #b-menu-2 -->
+        <div class="collapse navbar-collapse" id="b-menu-2">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="@rvk.recipe.controllers.routes.Application.index()"><span class="glyphicon glyphicon-home"></span> @Messages("page.home.title")</a></li>
+            <li><a href="@rvk.recipe.controllers.routes.Application.rules()"><span class="glyphicon glyphicon-book"></span> @Messages("page.rules.title")</a></li>
+            <li><a href="@rvk.recipe.controllers.routes.Application.about()"><span class="glyphicon glyphicon-question-sign"></span> @Messages("page.about.title")</a></li>
+            @subjectPresentOr() {
+            	@defining(rvk.recipe.controllers.Application.getLocalUser(session())) { user =>
+            	<li class="dropdown">
+            		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> @user.email <b class="caret"></b></a>
+            		<ul class="dropdown-menu">
+            			<li><a href="@rvk.recipe.controllers.routes.Application.profile()"><span class="glyphicon glyphicon-briefcase"></span> @Messages("page.profile.title")</a></li>
+            			<li><a href="@rvk.recipe.controllers.routes.Account.link()"><span class="glyphicon glyphicon-link"></span> @Messages("page.recipe.title")</a></li>
+            			<li class="divider"></li>
+            			<li><a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout()"><i class="glyphicon glyphicon-log-out"></i> @Messages("button.logout.title")</a></li>
+            		</ul>
+            	</li>
+            	}
+            }{
+            	<li><a href="@rvk.recipe.controllers.routes.Application.login()"><span class="glyphicon glyphicon-log-in"></span> @Messages("button.login.title")</a></li>
+            }
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+          	@subjectNotPresent() {
+            	<li class='@("active".when(nav == "signup"))'><a href="@rvk.recipe.controllers.routes.Application.signup()"><span class="glyphicon glyphicon-share"></span> @Messages("page.signup.title")</a></li>
+            }
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </nav>
       
-      </div> <!-- /container -->
-      
-    </body>
+      @if(flash.contains(rvk.recipe.controllers.Application.FLASH_ERROR_KEY)) {
+	      <div class="alert alert-error">
+	      	@flash().get(rvk.recipe.controllers.Application.FLASH_ERROR_KEY)
+	      </div>
+	  }
+	  @if(flash.contains(rvk.recipe.controllers.Application.FLASH_MESSAGE_KEY)) {
+	      <div class="alert alert-success">
+	      	@flash().get(rvk.recipe.controllers.Application.FLASH_MESSAGE_KEY)
+	      </div>
+	  }
+
+      <!-- 2-column layout -->
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+        
+        	<div class="container">
+        		
+        		@content
+        		
+        		<footer>
+        			<hr/>
+        			<p class="text-center">
+        				&copy; Copyright 2014 RVK | @Info.NAME v. @Info.VERSION @Info.BUILD_DATE
+        			</p>
+        		</footer>
+        	</div> <!-- /container -->
+        </div>
+      </div>
+    
+  </body>
 </html>

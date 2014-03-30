@@ -1,7 +1,7 @@
 package rvk.recipe.service;
 
 import play.Application;
-import rvk.recipe.model.User;
+import rvk.recipe.models.User;
 
 import com.feth.play.module.pa.service.UserServicePlugin;
 import com.feth.play.module.pa.user.AuthUser;
