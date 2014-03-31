@@ -72,7 +72,8 @@ public class User extends Identifier implements Subject {
 	
 	public boolean														emailValidated;
 	
-	public UserRole														role;
+	@ManyToMany
+	public List< UserRole >										roles;
 	
 	@OneToMany( cascade = CascadeType.ALL )
 	public List< LinkedAccount >							linkedAccounts;
@@ -89,7 +90,7 @@ public class User extends Identifier implements Subject {
 	
 	@Override
 	public List< ? extends Role > getRoles() {
-		return Arrays.asList( new UserRole[] { role } );
+		return roles;
 	}
 	
 	@Override
@@ -146,7 +147,7 @@ public class User extends Identifier implements Subject {
 	
 	public static User create( final AuthUser authUser ) {
 		final User user = new User();
-		user.role = UserRole.findByRoleName( UserRole.USER_ROLE );
+		user.roles = Collections.singletonList( UserRole.findByRoleName( UserRole.USER_ROLE ) );
 		// user.permissions = new ArrayList<UserPermission>();
 		// user.permissions.add(UserPermission.findByValue("printers.edit"));
 		user.active = true;
@@ -181,7 +182,7 @@ public class User extends Identifier implements Subject {
 			}
 		}
 		user.save();
-		// user.saveManyToManyAssociations( "role" );
+		user.saveManyToManyAssociations( "roles" );
 		// user.saveManyToManyAssociations("permissions");
 		return user;
 	}
