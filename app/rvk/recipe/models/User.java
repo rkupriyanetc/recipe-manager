@@ -49,10 +49,16 @@ public class User extends Identifier implements Subject {
 	
 	@Required
 	@Column( nullable = false, length = 25 )
-	public String															nickname;
+	public String															name;
 	
 	@Column( length = 60 )
 	public String															fullname;
+	
+	@Column( length = 40 )
+	public String															firstName;
+	
+	@Column( length = 20 )
+	public String															lastName;
 	
 	@Column( length = 15 )
 	public String															telephoneNumber;
@@ -158,7 +164,7 @@ public class User extends Identifier implements Subject {
 			final NameIdentity identity = ( NameIdentity )authUser;
 			final String name = identity.getName();
 			if ( name != null ) {
-				user.nickname = name;
+				user.name = name;
 			}
 		}
 		if ( authUser instanceof FirstLastNameIdentity ) {
@@ -167,9 +173,11 @@ public class User extends Identifier implements Subject {
 			final String lastName = identity.getLastName();
 			if ( firstName != null ) {
 				user.fullname = firstName;
+				user.firstName = firstName;
 			}
 			if ( lastName != null ) {
 				user.fullname += ' ' + lastName;
+				user.lastName = lastName;
 			}
 		}
 		user.save();
