@@ -92,7 +92,7 @@ public class MyUsernamePasswordAuthProvider
 		public String	repeatPassword;
 		
 		@Required
-		public String	nickname;
+		public String	name;
 		
 		public String validate() {
 			if ( password == null || !password.equals( repeatPassword ) ) {
@@ -256,9 +256,9 @@ public class MyUsernamePasswordAuthProvider
 		final String url = routes.Signup.resetPassword( token ).absoluteURL( ctx.request(), isSecure );
 		final Lang lang = Lang.preferred( ctx.request().acceptLanguages() );
 		final String langCode = lang.code();
-		final String html = getEmailTemplate( "views.html.account.email.password_reset", langCode, url, token, user.nickname,
+		final String html = getEmailTemplate( "views.html.account.email.password_reset", langCode, url, token, user.name,
 				user.email );
-		final String text = getEmailTemplate( "views.txt.account.email.password_reset", langCode, url, token, user.nickname,
+		final String text = getEmailTemplate( "views.txt.account.email.password_reset", langCode, url, token, user.name,
 				user.email );
 		return new Body( text, html );
 	}
@@ -321,9 +321,8 @@ public class MyUsernamePasswordAuthProvider
 		final String url = routes.Signup.verify( token ).absoluteURL( ctx.request(), isSecure );
 		final Lang lang = Lang.preferred( ctx.request().acceptLanguages() );
 		final String langCode = lang.code();
-		final String html = getEmailTemplate( "views.html.account.email.verify_email", langCode, url, token, user.nickname,
-				user.email );
-		final String text = getEmailTemplate( "views.txt.account.email.verify_email", langCode, url, token, user.nickname, user.email );
+		final String html = getEmailTemplate( "views.html.account.email.verify_email", langCode, url, token, user.name, user.email );
+		final String text = getEmailTemplate( "views.txt.account.email.verify_email", langCode, url, token, user.name, user.email );
 		return new Body( text, html );
 	}
 	
@@ -335,6 +334,6 @@ public class MyUsernamePasswordAuthProvider
 	}
 	
 	private String getEmailName( final User user ) {
-		return getEmailName( user.email, user.nickname );
+		return getEmailName( user.email, user.name );
 	}
 }

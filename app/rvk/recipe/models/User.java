@@ -252,7 +252,7 @@ public class User extends Identifier implements Subject {
 		sb.append( "Email : " );
 		sb.append( email );
 		sb.append( ", Nickname : " );
-		sb.append( nickname );
+		sb.append( name );
 		sb.append( ". " );
 		return sb.toString();
 	}

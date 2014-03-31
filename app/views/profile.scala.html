@@ -6,7 +6,7 @@
 
     <h1>@Messages("playauthenticate.profile.title")</h1>
     <p>
-    Your name is @localUser.nickname and your email address is @if(!localUser.email) {<em>&lt;unknown&gt;</em>.} else {
+    Your name is @localUser.name and your email address is @if(!localUser.email) {<em>&lt;unknown&gt;</em>.} else {
     	@localUser.email.
 	    <i>
 	    @if(!localUser.emailValidated && localUser.email) {

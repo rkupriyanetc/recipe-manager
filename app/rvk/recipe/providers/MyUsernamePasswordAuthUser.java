@@ -9,11 +9,11 @@ public class MyUsernamePasswordAuthUser extends UsernamePasswordAuthUser impleme
 	
 	private static final long	serialVersionUID	= 1L;
 	
-	private final String			nickname;
+	private final String			name;
 	
 	public MyUsernamePasswordAuthUser( final MySignup signup ) {
 		super( signup.password, signup.email );
-		this.nickname = signup.nickname;
+		this.name = signup.name;
 	}
 	
 	/**
@@ -23,11 +23,11 @@ public class MyUsernamePasswordAuthUser extends UsernamePasswordAuthUser impleme
 	 */
 	public MyUsernamePasswordAuthUser( final String password ) {
 		super( password, null );
-		nickname = null;
+		name = null;
 	}
 	
 	@Override
 	public String getName() {
-		return nickname;
+		return name;
 	}
 }
