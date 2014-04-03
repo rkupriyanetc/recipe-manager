@@ -105,6 +105,10 @@ public class Application extends Controller {
 	}
 	
 	public static String formatTimestamp( final long t ) {
-		return new SimpleDateFormat( "yyyy-dd-MM HH:mm:ss" ).format( new Date( t ) );
+		return new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" ).format( new Date( t ) );
+	}
+	
+	public static String formatTimestamp( final Date date ) {
+		return new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" ).format( date );
 	}
 }

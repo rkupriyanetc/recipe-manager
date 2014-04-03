@@ -32,14 +32,19 @@
       </tr>
       <tr>
         <td>@Messages("lable.profile.lastLogin") :</td>
-        <td><b>@localUser.lastLogin</b></td>
+        <td><b>@rvk.recipe.controllers.Application.formatTimestamp(localUser.lastLogin)</b></td>
       </tr>
       <tr>
         <td>@Messages("lable.profile.roles") :</td>
         <td>
           <b>
-        	@defining(localUser.getProviders()) { providers =>
-        	@if(providers.size() > 0) {
+        	@defining(localUser.getRoles()) { roles =>
+        		@if(roles.size() > 0) {
+        			@for(r <- roles) {
+        				@r.getName()
+        			}
+        		}
+        	}
           </b>
         </td>
       </tr>
