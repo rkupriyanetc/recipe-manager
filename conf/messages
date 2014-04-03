@@ -5,7 +5,7 @@ page.signup.title=Registration
 page.login.title=Login
 page.about.title=About
 page.recipe.title=Recipe
-page.profile.title=Profile
+page.profile.title=User profile
 
 page.recipe.create=Create Recipe
 page.recipe.edit=Edit Recipe
@@ -30,6 +30,19 @@ button.link.title=Link more...
 
 lable.remember.title=Remember me
 lable.signin.title=Please sign in
+
+lable.profile.email=E-mail
+lable.profile.emailValidated=E-mail validated
+lable.profile.emailValidatedYes=verified
+lable.profile.emailValidatedNo=unverified
+lable.profile.nickname=Nickname
+lable.profile.fullname=Name
+lable.profile.address=Address
+lable.profile.phone=Phone number
+lable.profile.lastLogin=Last visit
+lable.profile.roles=Your Roles
+
+link.profile.emailValidate=click to verify
 
 placeholder.password=Password
 placeholder.email=Email address

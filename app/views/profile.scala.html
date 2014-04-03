@@ -2,22 +2,48 @@
 
 @import com.feth.play.module.pa.views.html._
 
-@main(Messages("playauthenticate.profile.title"),"profile") {
+@main(Messages("page.profile.title"),"profile") {
 
-    <h1>@Messages("playauthenticate.profile.title")</h1>
-    <p>
-    Your name is @localUser.name and your email address is @if(!localUser.email) {<em>&lt;unknown&gt;</em>.} else {
-    	@localUser.email.
-	    <i>
-	    @if(!localUser.emailValidated && localUser.email) {
-	      (unverified - <a href="@rvk.recipe.controllers.routes.Account.verifyEmail">click to verify</a>)
-	    } else {
-	      (verified)
-	    }</i>
-    }</p>
-    @if(localUser.firstName) {
-      <p>Your name is @localUser.firstName</p>
-    }
+    <h1>@Messages("page.profile.title")</h1>
+    <table>
+      <tr>
+        <td>@Messages("lable.profile.email") :</td>
+        <td><b>@if(!localUser.email) {<em>&lt;unknown&gt;</em>.} else {@localUser.email.}</b></td>
+      </tr>
+      <tr>
+        <td>@Messages("lable.profile.emailValidated") :</td>
+        <td><b>@if(!localUser.emailValidated && localUser.email) {<em>@Messages("lable.profile.emailValidatedNo") - <a href="@rvk.recipe.controllers.routes.Account.verifyEmail">@Messages("link.profile.emailValidate")</a></em>.} else {@Messages("lable.profile.emailValidatedYes").}</b></td>
+      </tr>
+      <tr>
+        <td>@Messages("lable.profile.nickname") :</td>
+        <td><b>@localUser.name</b></td>
+      </tr>
+      <tr>
+        <td>@Messages("lable.profile.fullname") :</td>
+        <td><b>@localUser.fullname</b></td>
+      </tr>
+      <tr>
+        <td>@Messages("lable.profile.address") :</td>
+        <td><b>@localUser.address</b></td>
+      </tr>
+      <tr>
+        <td>@Messages("lable.profile.phone") :</td>
+        <td><b>@localUser.telephoneNumber</b></td>
+      </tr>
+      <tr>
+        <td>@Messages("lable.profile.lastLogin") :</td>
+        <td><b>@localUser.lastLogin</b></td>
+      </tr>
+      <tr>
+        <td>@Messages("lable.profile.roles") :</td>
+        <td>
+          <b>
+        	@defining(localUser.getProviders()) { providers =>
+        	@if(providers.size() > 0) {
+          </b>
+        </td>
+      </tr>
+    </table>
     <p>
       @defining(localUser.getProviders()) { providers =>
       	@if(providers.size() > 0) {

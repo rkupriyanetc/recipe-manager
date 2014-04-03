@@ -3,6 +3,8 @@ page.rules.title=Правила на порталі
 page.signup.title=Реєстрація
 page.login.title=Вхід
 page.about.title=Про сайт
+page.recipe.title=Рецепти
+page.profile.title=Профіль користувача
 
 page.manager.title=Адміністрування
 
@@ -19,6 +21,20 @@ button.create=Створити
 
 lable.remember.title=Запам''ятати мене
 lable.signin.title=Прохання увійти
+
+
+lable.profile.email=E-mail
+lable.profile.emailValidated=Чи підтверджена E-mail
+lable.profile.emailValidatedYes=підтверджена
+lable.profile.emailValidatedNo=непідтверджена
+lable.profile.nickname=Нік
+lable.profile.fullname=Ім''я
+lable.profile.address=Адреса
+lable.profile.phone=Номер телефону
+lable.profile.lastLogin=Останній візит
+lable.profile.roles=Ваші ролі
+
+link.profile.emailValidate=натисніть, щоб перевірити
 
 placeholder.password=Секретне слово
 placeholder.email=Електронна почта
