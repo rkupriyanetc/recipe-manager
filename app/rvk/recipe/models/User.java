@@ -147,7 +147,8 @@ public class User extends Identifier implements Subject {
 	
 	public static User create( final AuthUser authUser ) {
 		final User user = new User();
-		user.roles = Collections.singletonList( UserRole.findByRoleName( UserRole.USER_ROLE ) );
+		user.roles = Arrays
+				.asList( UserRole.findByRoleName( UserRole.USER_ROLE ), UserRole.findByRoleName( UserRole.PRIV_USER_ROLE ) );
 		// user.permissions = new ArrayList<UserPermission>();
 		// user.permissions.add(UserPermission.findByValue("printers.edit"));
 		user.active = true;

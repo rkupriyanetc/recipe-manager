@@ -39,11 +39,11 @@
         <td>
           <b>
         	@defining(localUser.getRoles()) { roles =>
-        		@if(roles.size() > 0) {
-        			@for(r <- roles) {
-        				@r.getName()
-        			}
+        	  @if(roles.size() > 0) {
+        		@for(r <- roles) {
+        		  @r.getName(), &nbsp;
         		}
+        	  }
         	}
           </b>
         </td>
@@ -53,9 +53,9 @@
       @defining(localUser.getProviders()) { providers =>
       	@if(providers.size() > 0) {
           @if(providers.size() ==1) {
-            @Messages("playauthenticate.profile.providers_one")
+            @Messages("lable.profile.provider")
           } else {
-            @Messages("playauthenticate.profile.providers_many",providers.size().toString())
+            @Messages("lable.profile.providers",providers.size().toString())
           }
           @for(p <- providers) {
             @_providerIcon(p)
@@ -65,16 +65,16 @@
     </p>
     <p>
     @currentAuth() { auth =>
-        @Messages("playauthenticate.profile.logged") @_providerIcon(auth.getProvider())<br/>
+        @Messages("lable.profile.logged") @_providerIcon(auth.getProvider())<br/>
         @if(auth.expires() != -1){
-            @Messages("playauthenticate.profile.session", auth.getId(), rvk.recipe.controllers.Application.formatTimestamp(auth.expires()))
+            @Messages("lable.profile.session", auth.getId(), rvk.recipe.controllers.Application.formatTimestamp(auth.expires()))
         } else {
-            @Messages("playauthenticate.profile.session_endless", auth.getId())
+            @Messages("lable.profile.sessionEndless", auth.getId())
         }
     }
     <br/>
     <ul>
-      <li><a href="@rvk.recipe.controllers.routes.Account.changePassword">@Messages("playauthenticate.profile.password_change")</a></li>
+      <li><a href="@rvk.recipe.controllers.routes.Account.changePassword">@Messages("link.profile.changePassword")</a></li>
     </ul>
     </p>
 }

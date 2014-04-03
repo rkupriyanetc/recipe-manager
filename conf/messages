@@ -41,8 +41,15 @@ lable.profile.address=Address
 lable.profile.phone=Phone number
 lable.profile.lastLogin=Last visit
 lable.profile.roles=Your Roles
+lable.profile.provider=There is one provider linked with your account:
+lable.profile.providers=There are {0} providers linked with your account:
+lable.profile.logged=You are currently logged in with:
+lable.profile.session=Your user ID is {0} and your session will expire on {1}
+lable.profile.sessionEndless=Your user ID is {0} and your session will not expire, as it is endless
+lable.profile.logged=You are currently logged in with:
 
 link.profile.emailValidate=click to verify
+link.profile.changePassword=Change/set a password for your account
 
 placeholder.password=Password
 placeholder.email=Email address

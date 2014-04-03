@@ -33,8 +33,14 @@ lable.profile.address=Адреса
 lable.profile.phone=Номер телефону
 lable.profile.lastLogin=Останній візит
 lable.profile.roles=Ваші ролі
+lable.profile.provider=Існує один провайдер, пов''язаний з вашим обліковим записом:
+lable.profile.providers=Існує {0} провайдери(ів), пов''язані з вашим обліковим записом:
+lable.profile.logged=На даний час ви увійшли як:
+lable.profile.session=Ваш ідентифікатор {0} і ваша сесія закінчується {1}
+lable.profile.sessionEndless=Ваш ідентифікатор {0} і ваша сесія є нескінченною
 
 link.profile.emailValidate=натисніть, щоб перевірити
+link.profile.changePassword=Змінити/встановити пароль для вашого облікового запису
 
 placeholder.password=Секретне слово
 placeholder.email=Електронна почта
