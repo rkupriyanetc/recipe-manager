@@ -10,5 +10,5 @@ public class Info {
 	
 	public static String	SBT_VERSION		= "0.13.0";
 	
-	public static String	BUILD_DATE		= "2014-03-25";
+	public static String	BUILD_DATE		= "2014-04-30";
 }

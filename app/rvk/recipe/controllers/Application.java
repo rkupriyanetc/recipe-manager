@@ -45,13 +45,13 @@ public class Application extends Controller {
 		return ok( about.render() );
 	}
 	
-	@Restrict( { @Group( UserRole.USER_ROLE ), @Group( UserRole.PRIV_USER_ROLE ), @Group( UserRole.ADMIN_ROLE ) } )
+	@Restrict( @Group( UserRole.USER_ROLE ) )
 	public static Result restricted() {
 		final User localUser = getLocalUser( session() );
 		return ok( restricted.render( localUser ) );
 	}
 	
-	@Restrict( { @Group( UserRole.USER_ROLE ), @Group( UserRole.PRIV_USER_ROLE ), @Group( UserRole.ADMIN_ROLE ) } )
+	@Restrict( @Group( UserRole.USER_ROLE ) )
 	public static Result profile() {
 		final User localUser = getLocalUser( session() );
 		return ok( profile.render( localUser ) );

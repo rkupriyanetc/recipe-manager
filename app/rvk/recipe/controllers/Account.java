@@ -85,7 +85,7 @@ public class Account extends Controller {
 		return ok( link.render() );
 	}
 	
-	@Restrict( { @Group( UserRole.USER_ROLE ), @Group( UserRole.PRIV_USER_ROLE ), @Group( UserRole.ADMIN_ROLE ) } )
+	@Restrict( @Group( UserRole.USER_ROLE ) )
 	public static Result verifyEmail() {
 		com.feth.play.module.pa.controllers.Authenticate.noCache( response() );
 		final User user = Application.getLocalUser( session() );
@@ -103,7 +103,7 @@ public class Account extends Controller {
 		return redirect( routes.Application.profile() );
 	}
 	
-	@Restrict( { @Group( UserRole.USER_ROLE ), @Group( UserRole.PRIV_USER_ROLE ), @Group( UserRole.ADMIN_ROLE ) } )
+	@Restrict( @Group( UserRole.USER_ROLE ) )
 	public static Result changePassword() {
 		com.feth.play.module.pa.controllers.Authenticate.noCache( response() );
 		final User u = Application.getLocalUser( session() );
@@ -115,7 +115,7 @@ public class Account extends Controller {
 		}
 	}
 	
-	@Restrict( { @Group( UserRole.USER_ROLE ), @Group( UserRole.PRIV_USER_ROLE ), @Group( UserRole.ADMIN_ROLE ) } )
+	@Restrict( @Group( UserRole.USER_ROLE ) )
 	public static Result doChangePassword() {
 		com.feth.play.module.pa.controllers.Authenticate.noCache( response() );
 		final Form< Account.PasswordChange > filledForm = PASSWORD_CHANGE_FORM.bindFromRequest();

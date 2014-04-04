@@ -256,10 +256,8 @@ public class MyUsernamePasswordAuthProvider
 		final String url = routes.Signup.resetPassword( token ).absoluteURL( ctx.request(), isSecure );
 		final Lang lang = Lang.preferred( ctx.request().acceptLanguages() );
 		final String langCode = lang.code();
-		final String html = getEmailTemplate( "views.html.account.email.password_reset", langCode, url, token, user.name,
-				user.email );
-		final String text = getEmailTemplate( "views.txt.account.email.password_reset", langCode, url, token, user.name,
-				user.email );
+		final String html = getEmailTemplate( "views.html.account.email.password_reset", langCode, url, token, user.name, user.email );
+		final String text = getEmailTemplate( "views.txt.account.email.password_reset", langCode, url, token, user.name, user.email );
 		return new Body( text, html );
 	}
 	
