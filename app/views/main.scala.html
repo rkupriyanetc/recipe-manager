@@ -69,7 +69,9 @@
             		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> @user.email <b class="caret"></b></a>
             		<ul class="dropdown-menu">
             			<li><a href="@rvk.recipe.controllers.routes.Application.profile()"><span class="glyphicon glyphicon-briefcase"></span> @Messages("page.profile.title")</a></li>
-            			<li><a href="@rvk.recipe.controllers.routes.Account.link()"><span class="glyphicon glyphicon-link"></span> @Messages("page.recipe.title")</a></li>
+            			<li><a href="@rvk.recipe.controllers.routes.Account.link()"><span class="glyphicon glyphicon-link"></span> @Messages("page.bind.title")</a></li>
+            			<li class="divider"></li>
+            			<li><a href="@rvk.recipe.controllers.routes.Recipes.index()">@Messages("page.recipe.title")</a></li>
             			<li class="divider"></li>
             			<li><a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout()"><i class="glyphicon glyphicon-log-out"></i> @Messages("button.logout.title")</a></li>
             		</ul>

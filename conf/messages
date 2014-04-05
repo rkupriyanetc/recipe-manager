@@ -4,8 +4,9 @@ page.rules.title=Rules Portal
 page.signup.title=Registration
 page.login.title=Login
 page.about.title=About
-page.recipe.title=Recipe
+page.bind.title=Bind network
 page.profile.title=User profile
+page.recipe.title=My Recipes
 
 page.recipe.create=Create Recipe
 page.recipe.edit=Edit Recipe
@@ -19,6 +20,8 @@ page.rules.rule_2=No need to add ingredients, which already exist in the system,
 page.rules.rule_3=You can not send messages to users degrading. For each such notification the user will be temporarily disabled for a specified period. 5 such outages automatically remove the user from the system. His recipes are good recipes Portal (without holder), although the memory of a user in the system remain. It is no longer registered in the system.
 page.rules.rule_4=Portal Administrator must fight spam and respond to messages from users. Messages may contain a request for change portal such as quality and design. The changes that will be proposed by at least two people will be discussed and resolved during free time. The Administrator shall not be liable for any loss of information about recipes, pictures and descriptions. For violations he has every right to remove any user.
 
+text.about.rvk=This is my first website. I am glad that I have something started going out. Thank you for your support!
+text.about.komora=Thank you very much for this man strong support, patience and endurance to my training.
 text.about.play=Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
 text.about.bootstrap=Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
 text.about.play_authenticate=Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.

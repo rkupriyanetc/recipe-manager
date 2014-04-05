@@ -1,1 +1,1 @@
-# Play Authenticate sample Java application
+# Recipe Manager. Sample Java application

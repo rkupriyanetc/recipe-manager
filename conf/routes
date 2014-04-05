@@ -30,8 +30,8 @@ GET     /accounts/exists            	rvk.recipe.controllers.Signup.exists
 GET     /accounts/password/reset/:token rvk.recipe.controllers.Signup.resetPassword(token: String)
 POST    /accounts/password/reset        rvk.recipe.controllers.Signup.doResetPassword
 
-GET    /accounts/password/change    	rvk.recipe.controllers.Account.changePassword
-POST   /accounts/password/change    	rvk.recipe.controllers.Account.doChangePassword
+GET     /accounts/password/change    	rvk.recipe.controllers.Account.changePassword
+POST    /accounts/password/change    	rvk.recipe.controllers.Account.doChangePassword
 
 GET     /accounts/verify            	rvk.recipe.controllers.Account.verifyEmail
 
@@ -45,6 +45,8 @@ POST    /accounts/merge             	rvk.recipe.controllers.Account.doMerge
 
 GET     /login/password/forgot     		rvk.recipe.controllers.Signup.forgotPassword(email: String ?= "")
 POST    /login/password/forgot     		rvk.recipe.controllers.Signup.doForgotPassword
+
+GET     /recipes               			rvk.recipe.controllers.Recipes.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               	controllers.Assets.at(path="/public", file)
