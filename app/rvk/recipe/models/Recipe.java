@@ -83,6 +83,14 @@ public class Recipe extends Identifier {
 		return find.where().eq( "user", user ).findList();
 	}
 	
+	public static List< Recipe > byTag( final String tag ) {
+		return find.where().contains( "tags", tag ).findList();
+	}
+	
+	public static List< Recipe > byUserByTag( final User user, final String tag ) {
+		return find.where().eq( "user", user ).contains( "tags", tag ).findList();
+	}
+	
 	protected String classInfo() {
 		final StringBuffer sb = new StringBuffer( "\n" );
 		sb.append( "Recipe: " );
