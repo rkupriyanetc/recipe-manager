@@ -4,6 +4,7 @@ page.signup.title=Реєстрація
 page.login.title=Вхід
 page.about.title=Про сайт
 page.bind.title=Прив'язати мережі
+page.restricted.title=Обмежена сторінка
 page.profile.title=Профіль користувача
 page.recipe.title=Мої рецепти
 

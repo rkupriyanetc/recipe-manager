@@ -5,6 +5,7 @@ page.signup.title=Registration
 page.login.title=Login
 page.about.title=About
 page.bind.title=Bind network
+page.restricted.title=Restricted page
 page.profile.title=User profile
 page.recipe.title=My Recipes
 

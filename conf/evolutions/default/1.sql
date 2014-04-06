@@ -40,8 +40,10 @@ create table tokens (
 create table users (
   id                        bigint auto_increment not null,
   email                     varchar(60),
-  nickname                  varchar(25) not null,
+  name                      varchar(25) not null,
   fullname                  varchar(60),
+  first_name                varchar(40),
+  last_name                 varchar(20),
   telephone_number          varchar(15),
   address                   varchar(255),
   last_login                datetime,
@@ -63,6 +65,12 @@ create table roles (
 ;
 
 
+create table users_roles (
+  users_id                       bigint not null,
+  roles_id                       bigint not null,
+  constraint pk_users_roles primary key (users_id, roles_id))
+;
+
 create table users_permissions (
   users_id                       bigint not null,
   permissions_id                 bigint not null,
@@ -76,6 +84,10 @@ alter table tokens add constraint fk_tokens_targetUser_3 foreign key (target_use
 create index ix_tokens_targetUser_3 on tokens (target_user_id);
 
 
+
+alter table users_roles add constraint fk_users_roles_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
+
+alter table users_roles add constraint fk_users_roles_roles_02 foreign key (roles_id) references roles (id) on delete restrict on update restrict;
 
 alter table users_permissions add constraint fk_users_permissions_users_01 foreign key (users_id) references users (id) on delete restrict on update restrict;
 
@@ -92,6 +104,8 @@ drop table recipes;
 drop table tokens;
 
 drop table users;
+
+drop table users_roles;
 
 drop table users_permissions;
 
