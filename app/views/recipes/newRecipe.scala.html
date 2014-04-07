@@ -1,0 +1,74 @@
+@( design: Form[rvk.recipe.models.Recipe] )
+@import helper._
+@import rvk.recipe.controllers._
+
+@main(Messages("page.recipe_new.title"),"recipes") {
+    
+  <div class="page-header">
+    <h2>@Messages("page.recipe_new.title")</h2>
+  </div>
+  
+  @helper.form(routes.Recipes.doNewRecipe, 'class -> "form") {
+        
+    @if(design.hasGlobalErrors) {
+      <div class="alert alert-danger">@design.globalError.message</div> 
+    }
+
+    <div class="row">
+    
+      <div class="col-md-4">
+      
+        @inputText(
+          design("title"),
+          '_showConstraints -> true,
+          '_label -> Messages("label.design.title.title"),
+          'class -> "form-control"
+        )
+            
+        @inputText(
+          design("description"),
+          '_showConstraints -> true,
+          '_label -> Messages("label.design.denomination.title"),
+          'class -> "form-control"
+        )
+        
+        <div class="row">
+        
+          <div class="col-md-4 col-xs-4">
+          @inputText(
+            design("imageName"),
+            '_showConstraints -> true,
+            '_label -> Messages("label.design.value.title"),
+            'class -> "form-control",
+            'tooltip -> Messages("label.design.value.tooltip")
+          )</div>
+          
+          <div class="col-md-8 col-xs-8 has-feedback">
+          @inputText(
+            design("tags"),
+            '_showConstraints -> true,
+            '_label -> Messages("label.design.currency.title"),
+            'class -> "form-control"
+          )</div>
+        
+        </div>
+        
+      </div>
+      
+      <div class="col-md-8">
+      Other properties...
+      </div>
+      
+    </div>
+    
+    <div class="row">
+    
+      <div class="col-md-12">
+        <input type="submit" value='@Messages("button.create.title")' class="btn btn-primary" />
+      </div>
+    
+    </div>
+      
+  }
+
+}
