@@ -29,7 +29,7 @@ public class Recipe extends Identifier {
 	private static final long							serialVersionUID	= 2L;
 	
 	@Column( length = 150, nullable = false )
-	private String												title;
+	public String													title;
 	
 	@Lob
 	@Basic( fetch = FetchType.LAZY, optional = true )
@@ -56,7 +56,7 @@ public class Recipe extends Identifier {
 	@CollectionTable( name = "recipe_tags", joinColumns = { @JoinColumn( name = "recipe_id" ) } )
 	@ElementCollection( fetch = FetchType.LAZY )
 	@Column( name = "tag", length = 25 )
-	private Set< String >									tags							= new HashSet< String >();
+	public Set< String >									tags							= new HashSet< String >();
 	
 	public boolean												isPrivate;
 	
@@ -65,6 +65,8 @@ public class Recipe extends Identifier {
 	public byte														rating;
 	
 	public static Finder< Long, Recipe >	find							= new Finder< Long, Recipe >( Long.class, Recipe.class );
+	
+	public Recipe() {}
 	
 	public Recipe( final String title, final String description, final User user ) {
 		this.title = title;

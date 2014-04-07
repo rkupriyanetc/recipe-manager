@@ -8,6 +8,7 @@ page.bind.title=Bind network
 page.restricted.title=Restricted page
 page.profile.title=User profile
 page.recipe.title=My Recipes
+page.recipe_new.title=Create new Recipe
 
 page.recipe.create=Create Recipe
 page.recipe.edit=Edit Recipe
@@ -51,6 +52,8 @@ lable.profile.logged=You are currently logged in with:
 lable.profile.session=Your user ID is {0} and your session will expire on {1}
 lable.profile.sessionEndless=Your user ID is {0} and your session will not expire, as it is endless
 lable.profile.logged=You are currently logged in with:
+
+lable.recipe.descriptions=Recipe cooking descriptions 
 
 link.profile.emailValidate=click to verify
 link.profile.changePassword=Change/set a password for your account

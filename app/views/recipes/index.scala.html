@@ -1,4 +1,37 @@
+@( recipes: List[rvk.recipe.models.Recipe]=null )
+
+@import helper._
+@import rvk.recipe.controllers._
 
 @main(Messages("page.recipe.title")) {
-	<h3>@Messages("page.recipe.title")</h3>
+	<h2>@Messages("page.recipe.title")</h2>
+	
+	@defining(recipes) { recipe =>
+		@if(recipe!=null){
+		<div class="row">
+    	<div class="col-md-4">
+      	<b>recipe.id</b>
+    	</div>
+    	<div class="col-md-8">
+      	<b>recipe.title</b>
+    	</div>
+    </div>
+    <div class="text-center"><h3>@Messages("lable.recipe.descriptions")</h3></div>
+    <div class="row">
+    	<div class="col-md-12">
+      	recipe.description
+    	</div>
+    </div>
+    }
+  }
+  <br/>
+	@helper.form(routes.Recipes.newRecipe, 'class -> "form") {
+    <div class="row">
+    
+      <div class="col-md-12">
+        <input type="submit" value='@Messages("button.create.title")' class="btn btn-primary" />
+      </div>
+    
+    </div>
+	}
 }

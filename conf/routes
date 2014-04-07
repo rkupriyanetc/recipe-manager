@@ -3,50 +3,52 @@
 # ~~~~
 
 # Home page
-GET     /                           	rvk.recipe.controllers.Application.index
-GET     /rules                      	rvk.recipe.controllers.Application.rules
-GET     /about                      	rvk.recipe.controllers.Application.about
+GET     /                           		rvk.recipe.controllers.Application.index
+GET     /rules                      		rvk.recipe.controllers.Application.rules
+GET     /about                      		rvk.recipe.controllers.Application.about
 
-GET     /restricted                 	rvk.recipe.controllers.Application.restricted
+GET     /restricted                 		rvk.recipe.controllers.Application.restricted
 GET     /assets/javascript/routes.js    rvk.recipe.controllers.Application.jsRoutes
 
-GET     /profile                    	rvk.recipe.controllers.Application.profile
+GET     /profile                    		rvk.recipe.controllers.Application.profile
 
-GET     /login                      	rvk.recipe.controllers.Application.login
-POST    /login                      	rvk.recipe.controllers.Application.doLogin
+GET     /login                      		rvk.recipe.controllers.Application.login
+POST    /login                      		rvk.recipe.controllers.Application.doLogin
 
-GET     /logout                     	com.feth.play.module.pa.controllers.Authenticate.logout
-GET     /authenticate/:provider     	com.feth.play.module.pa.controllers.Authenticate.authenticate(provider: String)
+GET     /logout                     		com.feth.play.module.pa.controllers.Authenticate.logout
+GET     /authenticate/:provider     		com.feth.play.module.pa.controllers.Authenticate.authenticate(provider: String)
 
-GET     /signup                     	rvk.recipe.controllers.Application.signup
-POST    /signup                     	rvk.recipe.controllers.Application.doSignup
+GET     /signup                     		rvk.recipe.controllers.Application.signup
+POST    /signup                     		rvk.recipe.controllers.Application.doSignup
 
-GET     /accounts/unverified        	rvk.recipe.controllers.Signup.unverified
+GET     /accounts/unverified        		rvk.recipe.controllers.Signup.unverified
 GET     /authenticate/:provider/denied  rvk.recipe.controllers.Signup.oAuthDenied(provider: String)
 
-GET     /accounts/verify/:token     	rvk.recipe.controllers.Signup.verify(token: String)
-GET     /accounts/exists            	rvk.recipe.controllers.Signup.exists
+GET     /accounts/verify/:token     		rvk.recipe.controllers.Signup.verify(token: String)
+GET     /accounts/exists            		rvk.recipe.controllers.Signup.exists
 
 GET     /accounts/password/reset/:token rvk.recipe.controllers.Signup.resetPassword(token: String)
 POST    /accounts/password/reset        rvk.recipe.controllers.Signup.doResetPassword
 
-GET     /accounts/password/change    	rvk.recipe.controllers.Account.changePassword
-POST    /accounts/password/change    	rvk.recipe.controllers.Account.doChangePassword
+GET     /accounts/password/change    		rvk.recipe.controllers.Account.changePassword
+POST    /accounts/password/change    		rvk.recipe.controllers.Account.doChangePassword
 
-GET     /accounts/verify            	rvk.recipe.controllers.Account.verifyEmail
+GET     /accounts/verify            		rvk.recipe.controllers.Account.verifyEmail
 
-GET     /accounts/add               	rvk.recipe.controllers.Account.link
+GET     /accounts/add               		rvk.recipe.controllers.Account.link
 
-GET     /accounts/link              	rvk.recipe.controllers.Account.askLink
-POST    /accounts/link              	rvk.recipe.controllers.Account.doLink
+GET     /accounts/link              		rvk.recipe.controllers.Account.askLink
+POST    /accounts/link              		rvk.recipe.controllers.Account.doLink
 
-GET     /accounts/merge             	rvk.recipe.controllers.Account.askMerge
-POST    /accounts/merge             	rvk.recipe.controllers.Account.doMerge
+GET     /accounts/merge             		rvk.recipe.controllers.Account.askMerge
+POST    /accounts/merge             		rvk.recipe.controllers.Account.doMerge
 
-GET     /login/password/forgot     		rvk.recipe.controllers.Signup.forgotPassword(email: String ?= "")
-POST    /login/password/forgot     		rvk.recipe.controllers.Signup.doForgotPassword
+GET     /login/password/forgot     			rvk.recipe.controllers.Signup.forgotPassword(email: String ?= "")
+POST    /login/password/forgot     			rvk.recipe.controllers.Signup.doForgotPassword
 
-GET     /recipes               			rvk.recipe.controllers.Recipes.index
+GET     /recipes               					rvk.recipe.controllers.Recipes.index
+GET     /recipes/recipe/new             rvk.recipe.controllers.Recipes.newRecipe
+POST    /recipes/recipe/new             rvk.recipe.controllers.Recipes.doNewRecipe
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               	controllers.Assets.at(path="/public", file)
