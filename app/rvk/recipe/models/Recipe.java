@@ -77,8 +77,8 @@ public class Recipe extends Identifier {
 		this.rating = 0;
 	}
 	
-	public static Recipe byId( final int id ) {
-		return find.byId( Long.valueOf( id) );
+	public static Recipe byId( final Long id ) {
+		return find.byId( id );
 	}
 	
 	public static List< Recipe > byUser( final User user ) {

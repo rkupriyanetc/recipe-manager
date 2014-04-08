@@ -21,14 +21,14 @@
         @inputText(
           design("title"),
           '_showConstraints -> true,
-          '_label -> Messages("label.design.title.title"),
+          '_label -> Messages("lable.recipe.title"),
           'class -> "form-control"
         )
             
         @inputText(
           design("description"),
           '_showConstraints -> true,
-          '_label -> Messages("label.design.denomination.title"),
+          '_label -> Messages("lable.recipe.descriptions"),
           'class -> "form-control"
         )
         
@@ -38,16 +38,15 @@
           @inputText(
             design("imageName"),
             '_showConstraints -> true,
-            '_label -> Messages("label.design.value.title"),
-            'class -> "form-control",
-            'tooltip -> Messages("label.design.value.tooltip")
+            '_label -> Messages("lable.recipe.image"),
+            'class -> "form-control"
           )</div>
           
           <div class="col-md-8 col-xs-8 has-feedback">
           @inputText(
             design("tags"),
             '_showConstraints -> true,
-            '_label -> Messages("label.design.currency.title"),
+            '_label -> Messages("lable.recipe.tags"),
             'class -> "form-control"
           )</div>
         

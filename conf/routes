@@ -49,7 +49,7 @@ POST    /login/password/forgot     			rvk.recipe.controllers.Signup.doForgotPass
 GET     /recipes               					rvk.recipe.controllers.Recipes.index
 GET     /recipes/recipe/new             rvk.recipe.controllers.Recipes.newRecipe
 POST    /recipes/recipe/new             rvk.recipe.controllers.Recipes.doNewRecipe
-GET     /recipes/recipe/edit            rvk.recipe.controllers.Recipes.editRecipe
+GET     /recipes/recipe/edit/:id        rvk.recipe.controllers.Recipes.editRecipe(id: Long)
 POST    /recipes/recipe/edit            rvk.recipe.controllers.Recipes.doEditRecipe
 
 # Map static resources from the /public folder to the /assets URL path

@@ -4,6 +4,62 @@
 @import rvk.recipe.controllers._
 
 @main(Messages("page.recipe.edit")) {
-	@helper.form(routes.Recipes.editRecipe, 'class -> "form") {
+	@helper.form(routes.Recipes.doEditRecipe, 'class -> "form") {
+		
+		@if(design.hasGlobalErrors) {
+      <div class="alert alert-danger">@design.globalError.message</div> 
+    }
+    
+    <div class="row">
+    
+      <div class="col-md-1">
+        @inputText(
+          design("id"),
+          '_showConstraints -> false,
+          '_label -> Messages("lable.recipe.id"),
+          'class -> "form-control"
+        )
+      </div>
+      <div class="col-md-7">
+        @inputText(
+          design("title"),
+          '_showConstraints -> true,
+          '_label -> Messages("lable.recipe.title"),
+          'class -> "form-control"
+        )
+      </div>
+      <div class="col-md-3">      
+        @inputText(
+          design("link"),
+          '_showConstraints -> true,
+          '_label -> Messages("lable.recipe.link"),
+          'class -> "form-control"
+        )
+      </div>
+      <div class="col-md-1">      
+        @checkbox(
+          design("isPrivate"),
+          '_showConstraints -> true,
+          '_label -> Messages("lable.recipe.privating"),
+          'class -> "form-control"
+        )
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        @textarea(
+        	design("description"),
+          '_showConstraints -> true,
+          '_label -> Messages("lable.recipe.descriptions"),
+          'class -> "form-control"
+        )
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <input type="submit" value='@Messages("button.recipe.save")' class="btn btn-primary" />
+      </div>
+    </div>
 	}
 }

@@ -49,12 +49,24 @@ public class Recipes extends Controller {
 	}
 	
 	@Restrict( @Group( UserRole.USER_ROLE ) )
-	public static Result editRecipe() {
-		return ok( editRecipe.render( RECIPE_DESIGN_FORM.fill( Recipe.byId( 1 ) ) ) );
+	public static Result editRecipe( final Long idRecipe ) {
+		return ok( editRecipe.render( RECIPE_DESIGN_FORM.fill( Recipe.byId( idRecipe ) ) ) );
 	}
 	
 	@Restrict( @Group( UserRole.USER_ROLE ) )
 	public static Result doEditRecipe() {
+		final Form< Recipe > formBinding = RECIPE_DESIGN_FORM.bindFromRequest();
+		if ( formBinding.hasErrors() ) {
+			flash( Application.FLASH_ERROR_KEY, "--Bad input for new Recipe--" );
+			return badRequest( editRecipe.render( formBinding ) );
+		}
+		final Recipe form = formBinding.get();
+		final Recipe recipe = Recipe.byId( form.id );
+		recipe.description = form.description;
+		recipe.title = form.title;
+		recipe.link = form.link;
+		recipe.isPrivate = form.isPrivate;
+		recipe.save();
 		return ok( index.render( Recipe.byUser( Application.getLocalUser( session() ) ) ) );
 	}
 }

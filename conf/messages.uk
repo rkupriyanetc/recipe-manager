@@ -22,6 +22,7 @@ text.about.komora=Велике дякую цьому чоловікові за �
 button.login.title=Увійти
 button.create.title=Створити
 button.recipe.edit=Редагувати
+button.recipe.save=Зберегти
 
 lable.remember.title=Запам''ятати мене
 lable.signin.title=Прохання увійти
@@ -48,6 +49,9 @@ lable.recipe.title=Назва рецепту
 lable.recipe.privating=Приватний
 lable.recipe.visiting=Відвідувань
 lable.recipe.rating=Рейтинг
+lable.recipe.tags=Теги(розділені комою)
+lable.recipe.link=Посилання
+lable.recipe.image=Назва малюнка
 
 link.profile.emailValidate=натисніть, щоб перевірити
 link.profile.changePassword=Змінити/встановити пароль для вашого облікового запису
