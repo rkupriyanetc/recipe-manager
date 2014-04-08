@@ -8,6 +8,7 @@ import play.mvc.Result;
 import rvk.recipe.models.Recipe;
 import rvk.recipe.models.User;
 import rvk.recipe.models.UserRole;
+import views.html.recipes.editRecipe;
 import views.html.recipes.index;
 import views.html.recipes.newRecipe;
 import be.objectify.deadbolt.java.actions.Group;
@@ -45,5 +46,15 @@ public class Recipes extends Controller {
 		recipe.save();
 		// recipe.saveManyToManyAssociations( "user" );
 		return ok( index.render( Recipe.byUser( user ) ) );
+	}
+	
+	@Restrict( @Group( UserRole.USER_ROLE ) )
+	public static Result editRecipe() {
+		return ok( editRecipe.render( RECIPE_DESIGN_FORM.fill( Recipe.byId( 1 ) ) ) );
+	}
+	
+	@Restrict( @Group( UserRole.USER_ROLE ) )
+	public static Result doEditRecipe() {
+		return ok( index.render( Recipe.byUser( Application.getLocalUser( session() ) ) ) );
 	}
 }

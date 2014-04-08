@@ -77,8 +77,8 @@ public class Recipe extends Identifier {
 		this.rating = 0;
 	}
 	
-	public static Recipe byId( final Long id ) {
-		return find.byId( id );
+	public static Recipe byId( final int id ) {
+		return find.byId( Long.valueOf( id) );
 	}
 	
 	public static List< Recipe > byUser( final User user ) {
@@ -93,6 +93,7 @@ public class Recipe extends Identifier {
 		return find.where().eq( "user", user ).contains( "tags", tag ).findList();
 	}
 	
+	@Override
 	protected String classInfo() {
 		final StringBuffer sb = new StringBuffer( "\n" );
 		sb.append( "Recipe: " );

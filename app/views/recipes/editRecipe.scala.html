@@ -1,0 +1,9 @@
+@( design: Form[rvk.recipe.models.Recipe] )
+
+@import helper._
+@import rvk.recipe.controllers._
+
+@main(Messages("page.recipe.edit")) {
+	@helper.form(routes.Recipes.editRecipe, 'class -> "form") {
+	}
+}

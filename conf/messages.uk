@@ -7,6 +7,7 @@ page.bind.title=Прив'язати мережі
 page.restricted.title=Обмежена сторінка
 page.profile.title=Профіль користувача
 page.recipe.title=Мої рецепти
+page.recipe.edit=Редагування рецепту
 
 page.manager.title=Адміністрування
 
@@ -20,6 +21,7 @@ text.about.komora=Велике дякую цьому чоловікові за �
 
 button.login.title=Увійти
 button.create.title=Створити
+button.recipe.edit=Редагувати
 
 lable.remember.title=Запам''ятати мене
 lable.signin.title=Прохання увійти
@@ -41,6 +43,11 @@ lable.profile.session=Ваш ідентифікатор {0} і ваша сесі
 lable.profile.sessionEndless=Ваш ідентифікатор {0} і ваша сесія є нескінченною
 
 lable.recipe.descriptions=Опис приготування рецепту
+lable.recipe.id=ІД
+lable.recipe.title=Назва рецепту
+lable.recipe.privating=Приватний
+lable.recipe.visiting=Відвідувань
+lable.recipe.rating=Рейтинг
 
 link.profile.emailValidate=натисніть, щоб перевірити
 link.profile.changePassword=Змінити/встановити пароль для вашого облікового запису
