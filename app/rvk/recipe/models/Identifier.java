@@ -7,21 +7,21 @@ import javax.persistence.MappedSuperclass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import play.db.ebean.Model;
-
 /**
  * @author RVK
  */
 @MappedSuperclass
-public abstract class Identifier extends Model {
+public abstract class Identifier {
 	
-	protected static final Logger	LOGGER						= LoggerFactory.getLogger( Identifier.class );
-	
-	private static final long			serialVersionUID	= -1L;
+	protected static final Logger	LOGGER	= LoggerFactory.getLogger( Identifier.class );
 	
 	@Id
 	@GeneratedValue
-	public Long										id;
+	private Long									id;
+	
+	public Long getId() {
+		return id;
+	}
 	
 	protected abstract String classInfo();
 	

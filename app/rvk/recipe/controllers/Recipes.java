@@ -38,7 +38,7 @@ public class Recipes extends Controller {
 		final User user = Application.getLocalUser( session() );
 		final Recipe recipe = new Recipe( form.title, form.description, user );
 		recipe.dateCreation = new Date();
-		recipe.imageName = form.imageName;
+		recipe.mainImage = form.mainImage;
 		recipe.tags = form.tags;
 		recipe.isPrivate = true;
 		recipe.rating = 0;
