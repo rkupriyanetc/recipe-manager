@@ -18,11 +18,13 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "be.objectify"  %% "deadbolt-java"          % "2.2-RC4" exclude("com.typesafe.play", "play-cache_2.10"),
-  "com.feth"      %% "play-authenticate"      % "0.5.2-SNAPSHOT",  "org.hibernate" % "hibernate-entitymanager" % "4.3.4.Final",
-	"mysql"         %  "mysql-connector-java"   % "5.1.29",
+  "com.feth"      %% "play-authenticate"      % "0.5.2-SNAPSHOT",
   javaCore,
-	javaJdbc,
-	javaJpa
+  javaJdbc,
+  javaEbean,
+  javaJpa,
+  "org.hibernate" % "hibernate-entitymanager" % "4.3.4.Final",
+  "mysql"         % "mysql-connector-java"    % "5.1.29"
 )
 
 playJavaSettings

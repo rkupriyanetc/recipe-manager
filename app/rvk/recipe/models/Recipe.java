@@ -23,35 +23,39 @@ import javax.persistence.Table;
 @Table( name = "recipes" )
 public class Recipe extends Identifier {
 	
+	private static final long										serialVersionUID	= 2L;
+	
 	@Column( length = 150, nullable = false )
-	public String					title;
+	public String																title;
 	
 	@Lob
 	@Basic( fetch = FetchType.LAZY, optional = true )
-	public String					description;
+	public String																description;
 	
 	@Basic
 	@Column( name = "creation_date", nullable = false )
-	public Date						dateCreation;
+	public Date																	dateCreation;
 	
-	public String					link;
+	public String																link;
 	
 	@ManyToOne
-	public User						user;
+	public User																	user;
 	
-	public String					mainImage;
-	
-	@ElementCollection( fetch = FetchType.LAZY )
-	public List< String >	imagesNames	= new ArrayList< String >();
+	public String																mainImage;
 	
 	@ElementCollection( fetch = FetchType.LAZY )
-	public Set< String >	tags				= new HashSet< String >();
+	public List< String >												imagesNames				= new ArrayList< String >();
 	
-	public boolean				isPrivate;
+	@ElementCollection( fetch = FetchType.LAZY )
+	public Set< String >												tags							= new HashSet< String >();
 	
-	public int						visiting;
+	public boolean															isPrivate;
 	
-	public byte						rating;
+	public int																	visiting;
+	
+	public byte																	rating;
+	
+	public static final Finder< Long, Recipe >	find							= new Finder< Long, Recipe >( Long.class, Recipe.class );
 	
 	public Recipe() {}
 	
@@ -65,7 +69,8 @@ public class Recipe extends Identifier {
 	}
 	
 	public static Recipe byId( final Long id ) {
-		return JPA.em().find( Recipe.class, id );
+		return find.where().eq( "id", id ).findUnique();
+		// return JPA.em().find( Recipe.class, id );
 	}
 	
 	public static List< Recipe > byUser( final User user ) {
