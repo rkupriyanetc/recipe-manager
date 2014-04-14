@@ -8,7 +8,7 @@
 
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-    <jta-data-source>java:/recipe-datasource_ext</jta-data-source>
+    <jta-data-source>recipe-datasource_ext</jta-data-source>
 
     <properties>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

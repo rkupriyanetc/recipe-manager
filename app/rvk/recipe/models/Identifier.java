@@ -7,18 +7,15 @@ import javax.persistence.MappedSuperclass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import play.db.ebean.Model;
-
 /**
  * @author RVK
  */
 @MappedSuperclass
-public abstract class Identifier extends Model {
+public abstract class Identifier {
 	
-	protected static final Logger	LOGGER						= LoggerFactory.getLogger( Identifier.class );
+	protected static final Logger	LOGGER	= LoggerFactory.getLogger( Identifier.class );
 	
-	private static final long			serialVersionUID	= -1L;
-	
+	// private static final long serialVersionUID = -1L;
 	@Id
 	@GeneratedValue
 	public Long										id;
@@ -29,6 +26,7 @@ public abstract class Identifier extends Model {
 	
 	protected abstract String classInfo();
 	
+	@Override
 	public String toString() {
 		final StringBuffer sb = new StringBuffer( getClass().getName() );
 		sb.append( " - " );

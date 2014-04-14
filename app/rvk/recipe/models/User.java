@@ -13,10 +13,10 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
 
 import play.data.format.Formats;
-import play.data.validation.Constraints;
-import play.data.validation.Constraints.Required;
+import play.db.jpa.JPA;
 import rvk.recipe.models.TokenAction.Type;
 import be.objectify.deadbolt.core.models.Permission;
 import be.objectify.deadbolt.core.models.Role;
@@ -38,51 +38,51 @@ import com.feth.play.module.pa.user.NameIdentity;
 @Table( name = "users" )
 public class User extends Identifier implements Subject {
 	
-	private static final long									serialVersionUID	= 1L;
+	private static final long			serialVersionUID	= 1L;
 	
-	@Constraints.Email
+	// @Constraints.Email
 	// if you make this unique, keep in mind that users *must* merge/link their
 	// accounts then on signup with additional providers
 	// @Column(unique = true)
-	@Column( length = 60 )
-	public String															email;
+	@Column( unique = true, length = 60 )
+	public String									email;
 	
-	@Required
+	// @Required
 	@Column( nullable = false, length = 25 )
-	public String															name;
+	public String									name;
 	
 	@Column( length = 60 )
-	public String															fullname;
+	public String									fullname;
 	
 	@Column( length = 40 )
-	public String															firstName;
+	public String									firstName;
 	
 	@Column( length = 20 )
-	public String															lastName;
+	public String									lastName;
 	
 	@Column( length = 15 )
-	public String															telephoneNumber;
+	public String									telephoneNumber;
 	
-	public String															address;
+	public String									address;
 	
 	@Formats.DateTime( pattern = "yyyy-MM-dd HH:mm:ss" )
-	public Date																lastLogin;
+	public Date										lastLogin;
 	
-	public boolean														active;
+	public boolean								active;
 	
-	public boolean														emailValidated;
+	public boolean								emailValidated;
 	
 	@ManyToMany
-	public List< UserRole >										roles;
+	public List< UserRole >				roles;
 	
 	@OneToMany( cascade = CascadeType.ALL )
-	public List< LinkedAccount >							linkedAccounts;
+	public List< LinkedAccount >	linkedAccounts;
 	
 	@ManyToMany
-	public List< UserPermission >							permissions;
+	public List< UserPermission >	permissions;
 	
-	public static final Finder< Long, User >	find							= new Finder< Long, User >( Long.class, User.class );
-	
+	// public static final Finder< Long, User > find = new Finder< Long, User >(
+	// Long.class, User.class );
 	@Override
 	public String getIdentifier() {
 		return Long.toString( id );
@@ -99,7 +99,7 @@ public class User extends Identifier implements Subject {
 	}
 	
 	public static boolean existsByAuthUserIdentity( final AuthUserIdentity identity ) {
-		final ExpressionList< User > exp;
+		final List< User > exp;
 		if ( identity instanceof UsernamePasswordAuthUser ) {
 			exp = getUsernamePasswordAuthUserFind( ( UsernamePasswordAuthUser )identity );
 		}
@@ -109,9 +109,13 @@ public class User extends Identifier implements Subject {
 		return exp.findRowCount() > 0;
 	}
 	
-	private static ExpressionList< User > getAuthUserFind( final AuthUserIdentity identity ) {
-		return find.where().eq( "active", true ).eq( "linkedAccounts.providerUserId", identity.getId() )
-				.eq( "linkedAccounts.providerKey", identity.getProvider() );
+	private static List< User > getAuthUserFind( final AuthUserIdentity identity ) {
+		final TypedQuery< User > q = JPA.em().createNamedQuery(
+				"select u from User u where u.active = :active and u.providerKey = :providerKey", User.class );
+		return q.setParameter( "active", true ).setParameter( "providerKey", identity.getId() ).getResultList();
+		// return find.where().eq( "active", true ).eq(
+		// "linkedAccounts.providerUserId", identity.getId() ).eq(
+		// "linkedAccounts.providerKey", identity.getProvider() );
 	}
 	
 	public static User findByAuthUserIdentity( final AuthUserIdentity identity ) {
@@ -122,7 +126,7 @@ public class User extends Identifier implements Subject {
 			return findByUsernamePasswordIdentity( ( UsernamePasswordAuthUser )identity );
 		}
 		else {
-			return getAuthUserFind( identity ).findUnique();
+			return getAuthUserFind( identity ).get( 0 );// findUnique();
 		}
 	}
 	

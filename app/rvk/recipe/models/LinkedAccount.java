@@ -3,6 +3,9 @@ package rvk.recipe.models;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
+
+import play.db.jpa.JPA;
 
 import com.feth.play.module.pa.user.AuthUser;
 
@@ -13,20 +16,22 @@ import com.feth.play.module.pa.user.AuthUser;
 @Table( name = "linkeds" )
 public class LinkedAccount extends Identifier {
 	
-	private static final long													serialVersionUID	= 3L;
-	
+	// private static final long serialVersionUID = 3L;
 	@ManyToOne
-	public User																				user;
+	public User		user;
 	
-	public String																			providerUserId;
+	public String	providerUserId;
 	
-	public String																			providerKey;
+	public String	providerKey;
 	
-	public static final Finder< Long, LinkedAccount >	find							= new Finder< Long, LinkedAccount >( Long.class,
-																																					LinkedAccount.class );
-	
+	// public static final Finder< Long, LinkedAccount > find = new Finder< Long,
+	// LinkedAccount >( Long.class, LinkedAccount.class );
 	public static LinkedAccount findByProviderKey( final User user, String key ) {
-		return find.where().eq( "user", user ).eq( "providerKey", key ).findUnique();
+		final TypedQuery< LinkedAccount > q = JPA.em().createNamedQuery(
+				"select l from LinkedAccount l where l.user = :user and l.providerKey = :providerKey", LinkedAccount.class );
+		return q.setParameter( "user", user ).setParameter( "providerKey", key ).getSingleResult();
+		// return find.where().eq( "user", user ).eq( "providerKey", key
+		// ).findUnique();
 	}
 	
 	public static LinkedAccount create( final AuthUser authUser ) {
