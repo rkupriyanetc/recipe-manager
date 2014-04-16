@@ -23,7 +23,6 @@ import be.objectify.deadbolt.core.models.Role;
 import be.objectify.deadbolt.core.models.Subject;
 
 import com.avaje.ebean.Ebean;
-import com.avaje.ebean.ExpressionList;
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 import com.feth.play.module.pa.user.AuthUser;
 import com.feth.play.module.pa.user.AuthUserIdentity;
@@ -37,8 +36,6 @@ import com.feth.play.module.pa.user.NameIdentity;
 @Entity
 @Table( name = "users" )
 public class User extends Identifier implements Subject {
-	
-	private static final long			serialVersionUID	= 1L;
 	
 	// @Constraints.Email
 	// if you make this unique, keep in mind that users *must* merge/link their
@@ -106,7 +103,7 @@ public class User extends Identifier implements Subject {
 		else {
 			exp = getAuthUserFind( identity );
 		}
-		return exp.findRowCount() > 0;
+		return exp.size() > 0;
 	}
 	
 	private static List< User > getAuthUserFind( final AuthUserIdentity identity ) {
@@ -131,12 +128,15 @@ public class User extends Identifier implements Subject {
 	}
 	
 	public static User findByUsernamePasswordIdentity( final UsernamePasswordAuthUser identity ) {
-		return getUsernamePasswordAuthUserFind( identity ).findUnique();
+		return getUsernamePasswordAuthUserFind( identity ).get( 0 );
 	}
 	
-	private static ExpressionList< User > getUsernamePasswordAuthUserFind( final UsernamePasswordAuthUser identity ) {
-		return find.where().eq( "active", true ).eq( "email", identity.getEmail() )
-				.eq( "linkedAccounts.providerKey", identity.getProvider() );
+	private static List< User > getUsernamePasswordAuthUserFind( final UsernamePasswordAuthUser identity ) {
+		final TypedQuery< User > q = JPA.em().createNamedQuery( "select u from User u where u.active = :active and u.email = :email",
+				User.class );
+		return q.getResultList();
+		// return find.where().eq( "active", true ).eq( "email", identity.getEmail()
+		// ).eq( "linkedAccounts.providerKey", identity.getProvider() );
 	}
 	
 	public void merge( final User otherUser ) {
@@ -185,8 +185,9 @@ public class User extends Identifier implements Subject {
 				user.lastName = lastName;
 			}
 		}
-		user.save();
-		user.saveManyToManyAssociations( "roles" );
+		JPA.em().persist( user );
+		// user.save();
+		// user.saveManyToManyAssociations( "roles" );
 		// user.saveManyToManyAssociations("permissions");
 		return user;
 	}
@@ -206,17 +207,23 @@ public class User extends Identifier implements Subject {
 	public static void addLinkedAccount( final AuthUser oldUser, final AuthUser newUser ) {
 		final User u = User.findByAuthUserIdentity( oldUser );
 		u.linkedAccounts.add( LinkedAccount.create( newUser ) );
-		u.save();
+		// u.save();
+		JPA.em().persist( u );
 	}
 	
 	public static void setLastLoginDate( final AuthUser knownUser ) {
 		final User u = User.findByAuthUserIdentity( knownUser );
 		u.lastLogin = new Date();
-		u.save();
+		// u.save();
+		JPA.em().persist( u );
 	}
 	
 	public static User findByEmail( final String email ) {
-		return find.where().eq( "active", true ).eq( "email", email ).findUnique();
+		final TypedQuery< User > q = JPA.em().createNamedQuery( "select u from User u where u.active = :active and u.email = :email",
+				User.class );
+		return q.setParameter( "active", true ).setParameter( "email", email ).getSingleResult();
+		// return find.where().eq( "active", true ).eq( "email", email
+		// ).findUnique();
 	}
 	
 	public LinkedAccount getAccountByProvider( final String providerKey ) {
@@ -226,7 +233,8 @@ public class User extends Identifier implements Subject {
 	public static void verify( final User unverified ) {
 		// You might want to wrap this into a transaction
 		unverified.emailValidated = true;
-		unverified.save();
+		// unverified.save();
+		JPA.em().persist( unverified );
 		TokenAction.deleteByUser( unverified, Type.EMAIL_VERIFICATION );
 	}
 	
@@ -242,7 +250,8 @@ public class User extends Identifier implements Subject {
 			}
 		}
 		a.providerUserId = authUser.getHashedPassword();
-		a.save();
+		JPA.em().persist( a );
+		// a.save();
 	}
 	
 	public void resetPassword( final UsernamePasswordAuthUser authUser, final boolean create ) {
